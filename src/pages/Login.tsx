@@ -2,12 +2,15 @@ import { useState } from "react";
 import Input from "../components/Input";
 import Button from "../components/Button";
 import users from "../data/users.json";
+import Message from "../components/Message";
 import "./Login.css";
 import { log } from "console";
 
 export default function Login() {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const [isCredentialInvalid, setIsCredentialInvalid] = useState(false);
+
   console.log(username);
 
   const handleLogin = () => {
@@ -15,7 +18,7 @@ export default function Login() {
       (u) => u.username === username && u.password === password
     );
     if (!user) {
-      console.log("invalid username or password");
+      setIsCredentialInvalid(true);
     } else {
       console.log("user logged in");
     }
@@ -28,20 +31,31 @@ export default function Login() {
         handleLogin();
       }}
     >
+      {isCredentialInvalid && (
+        <Message variant="error" message="Invalid username or password" />
+      )}
       <Input
         name="username"
         placeholder="Username"
         value={username}
-        onChange={(e) => setUserName(e.target.value)}
+        onChange={(e) => {
+          setUserName(e.target.value);
+          setIsCredentialInvalid(false);
+        }}
       />
       <Input
         name="password"
         type="password"
         placeholder="Password"
         value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        onChange={(e) => {
+          setPassword(e.target.value);
+          setIsCredentialInvalid(false);
+        }}
       />
-      <Button type="submit">Login</Button>
+      <Button type="submit" disabled={!username || !password}>
+        Login
+      </Button>
     </form>
   );
 }
