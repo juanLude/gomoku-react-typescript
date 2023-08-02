@@ -1,12 +1,15 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Input from "../components/Input";
+import { UserContext } from "../context";
+import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import users from "../data/users.json";
 import Message from "../components/Message";
 import "./Login.css";
-import { log } from "console";
 
 export default function Login() {
+  const { login } = useContext(UserContext);
+  const navigate = useNavigate();
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [isCredentialInvalid, setIsCredentialInvalid] = useState(false);
@@ -20,6 +23,8 @@ export default function Login() {
     if (!user) {
       setIsCredentialInvalid(true);
     } else {
+      login(username);
+      navigate("/");
       console.log("user logged in");
     }
   };

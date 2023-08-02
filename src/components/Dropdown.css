@@ -1,0 +1,72 @@
+/* Basic styles for the dropdown */
+.dropdown {
+  position: relative;
+  display: flex;
+  flex-direction: column; /* Change to column layout */
+  align-items: center;
+}
+
+/* Styles for the dropdown button */
+button {
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 4px;
+}
+
+/* Styles for the dropdown menu */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  list-style: none;
+  margin: 40px;
+  padding: 0;
+  border: 1px solid #ccc;
+  width: 120px;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px black;
+}
+
+/* Show the dropdown menu when the button is clicked */
+.show {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dropdown-menu li {
+  padding: 8px;
+  border-bottom: 1px solid #ccc;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-menu li:hover {
+  background-color: lightgreen;
+}
+
+.dropdown-menu li:last-child {
+  border-bottom: none;
+}
+
+/* Styles for the Start button */
+.start-button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  position: absolute; /* Position the button at the bottom */
+  bottom: -60px; /* Distance from the bottom of the dropdown menu */
+}
+*/ .start-button:hover {
+  background-color: #45a049;
+}
