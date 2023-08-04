@@ -1,11 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./Dropdown.css";
+import { useNavigate } from "react-router-dom";
 
 export default function Dropdown() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("");
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const options = ["5", "6", "7", "8", "9", "10"];
+  const navigate = useNavigate();
 
   const toggleDropdown = () => {
     setIsDropdownOpen((prevState) => !prevState);
@@ -19,6 +21,8 @@ export default function Dropdown() {
   };
   const handleStartClick = () => {
     console.log("Start button clicked!");
+    navigate("game");
+
     // Add any functionality for the Start button click event
   };
 

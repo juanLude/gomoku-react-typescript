@@ -9,25 +9,6 @@ body {
   background-color: rgb(17, 132, 17);
 }
 
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 2.8rem;
-  padding: 0.5rem;
-  background-color: #4caf50;
-  /* background-color: rgb(21, 211, 148); */
-  color: rgb(45, 4, 4);
-  font-weight: bolder;
-  text-align: left;
-  background-image: linear-gradient(
-    to bottom,
-    green 0%,
-    rgb(177, 177, 20) 50%,
-    green 100%
-  );
-}
-
 .main {
   flex: 1;
   padding: 4rem;
