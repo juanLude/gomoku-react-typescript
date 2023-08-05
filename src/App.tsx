@@ -1,8 +1,10 @@
 import "./App.css";
 import Header from "./components/Header";
-import { Home, Login, SignUp, PreviousGames, Game } from "./pages";
+import { Login, SignUp, PreviousGames, Game } from "./pages";
 import { Routes, Route, Navigate } from "react-router-dom";
 import UserProvider from "./components/UserProvider";
+import { useState } from "react";
+import Dropdown from "./components/Dropdown";
 
 function App() {
   return (
@@ -10,7 +12,7 @@ function App() {
       <Header />
       <main className="main">
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Dropdown />} />
           <Route path="previous-games" element={<PreviousGames />} />
           <Route path="login" element={<Login />} />
           <Route path="sign-up" element={<SignUp />} />

@@ -8,7 +8,7 @@
 
 /* Styles for the dropdown button */
 button {
-  padding: 10px 20px;
+  padding: 10px 80px;
   background-color: #3498db;
   color: #fff;
   border: none;
@@ -26,7 +26,7 @@ button {
   margin: 40px;
   padding: 0;
   border: 1px solid #ccc;
-  width: 120px;
+  width: 240px;
   border-radius: 4px;
   box-shadow: 0 2px 5px black;
 }
@@ -40,6 +40,8 @@ button {
 
 .dropdown-menu li {
   padding: 8px;
+  width: 220px;
+  text-align: center;
   border-bottom: 1px solid #ccc;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -47,6 +49,8 @@ button {
 
 .dropdown-menu li:hover {
   background-color: lightgreen;
+  width: 220px;
+  text-align: center;
 }
 
 .dropdown-menu li:last-child {
@@ -56,7 +60,7 @@ button {
 /* Styles for the Start button */
 .start-button {
   margin-top: 10px;
-  padding: 10px 20px;
+  padding: 10px 80px;
   background-color: #4caf50;
   color: #fff;
   border: none;
@@ -65,7 +69,7 @@ button {
   border-radius: 4px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   position: absolute; /* Position the button at the bottom */
-  bottom: -60px; /* Distance from the bottom of the dropdown menu */
+  bottom: -270px; /* Distance from the bottom of the dropdown menu */
 }
 */ .start-button:hover {
   background-color: #45a049;

@@ -1,0 +1,23 @@
+.box {
+  height: 3rem;
+  width: 3rem;
+  background-color: #fff;
+  border: 1px solid #ccc;
+
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.box.occupied {
+  background-color: rgba(0, 0, 0, 0.08);
+  cursor: not-allowed;
+}
+
+.box.selected {
+  background-color: #16437e;
+}
+
+.box.available:hover {
+  opacity: 0.5;
+  background-color: #16437e;
+}

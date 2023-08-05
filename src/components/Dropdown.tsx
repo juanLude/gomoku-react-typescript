@@ -1,13 +1,20 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import "./Dropdown.css";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../context";
+import Game from "./Game";
 
+interface DropdownProps {
+  selectedOption: string;
+  handleOptionSelect: (option: string) => void;
+}
 export default function Dropdown() {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState("");
+  const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
+  const [selectedOption, setSelectedOption] = useState<string>("");
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const options = ["5", "6", "7", "8", "9", "10"];
   const navigate = useNavigate();
+  const { user } = useContext(UserContext);
 
   const toggleDropdown = () => {
     setIsDropdownOpen((prevState) => !prevState);
@@ -15,13 +22,21 @@ export default function Dropdown() {
 
   const handleOptionSelect = (option: string) => {
     console.log(`Selected option: ${selectedOption}`);
+    // const selectedValue = parseInt(option, 10);
+    // onSquareChange(selectedValue);
     setSelectedOption(option);
     setIsDropdownOpen(false);
+    //onOptionSelect(option); // Call the onOptionSelect prop to pass the selected option to the parent component (App)
     // You can perform any action when an option is selected
   };
   const handleStartClick = () => {
     console.log("Start button clicked!");
-    navigate("game");
+    if (user) {
+      //navigate("game");
+      navigate(`game?boardSize=${selectedOption}`);
+    } else {
+      navigate("login");
+    }
 
     // Add any functionality for the Start button click event
   };
@@ -46,6 +61,7 @@ export default function Dropdown() {
 
   return (
     <div ref={dropdownRef} className="dropdown">
+      {/* <div>{propToPass}</div> */}
       <button onClick={toggleDropdown}>Board Size</button>
       {isDropdownOpen && (
         <ul className={`dropdown-menu ${isDropdownOpen ? "show" : ""}`}>
@@ -56,6 +72,7 @@ export default function Dropdown() {
           ))}
         </ul>
       )}
+
       {selectedOption && (
         <button className="start-button" onClick={handleStartClick}>
           Start
