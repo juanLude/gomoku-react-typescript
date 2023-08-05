@@ -17,48 +17,20 @@ export default function Game() {
 
   // use the square prop to set the number of squares
   return (
-    <div
-      className={style.seats}
-      style={{ gridTemplateColumns: `repeat(${size}, 1fr)` }}
-    >
-      {/* {squareNumber} */}
-      {[...Array(size * size)].map((_, index) => (
-        <Box key={`box-${index}`} id={index} />
-      ))}
+    <div className={style.container}>
+      <p>Current player: Black</p>
+      <div
+        className={style.seats}
+        style={{ gridTemplateColumns: `repeat(${size}, 1fr)` }}
+      >
+        {[...Array(size * size)].map((_, index) => (
+          <Box key={`box-${index}`} id={index} />
+        ))}
+      </div>
+      <div className={style.buttonContainer}>
+        <button className={style.button}>Restart</button>
+        <button className={style.button}>Leave</button>
+      </div>
     </div>
   );
 }
-// (
-//   <div>
-//     <h1>Gomoku Game</h1>
-
-//     <div>
-//       {/* Display the Gomoku board with the chosen size */}
-//       {/* Implement your Gomoku board rendering logic here */}
-//       {/* For simplicity, you can use a simple grid representation */}
-//       <div
-//         style={{
-//           display: "grid",
-//           gridTemplateColumns: `repeat(${5}, 30px)`,
-//           gap: "2px",
-//           // Add other necessary styling for board cells
-//         }}
-//       >
-//         {/* Render the cells of the board */}
-//         {Array.from({ length: 5 * 5 }, (_, index) => (
-//           <div
-//             key={index}
-//             style={{
-//               width: "30px",
-//               height: "30px",
-//               border: "2px solid #333",
-//               // Add other necessary styling for individual cells
-//             }}
-//           >
-//             {/* Add your game logic and interactions here */}
-//           </div>
-//         ))}
-//       </div>
-//     </div>
-//   </div>
-// );
