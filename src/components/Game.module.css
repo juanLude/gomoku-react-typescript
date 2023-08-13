@@ -48,3 +48,10 @@ p {
   background-color: blue;
   margin-top: 32px;
 }
+.board-disabled {
+  pointer-events: none;
+}
+
+.disable-hover {
+  pointer-events: none;
+}

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import style from "./Box.module.css";
 import { BOX_STATUS } from "../constants";
 
@@ -6,39 +6,77 @@ type BoxProps = {
   id: number;
   handleMove: (index: number) => void; // Prop to handle the move
   currentPlayer: string;
+  disabled: boolean;
+  restart: boolean;
+  onSelect: () => void;
+  //isSelected?: boolean;
 };
 
 export default function Box(props: BoxProps) {
-  const { id, handleMove, currentPlayer } = props;
+  const {
+    id,
+    handleMove,
+    currentPlayer,
+    disabled,
+    restart,
+    onSelect,
+    //isSelected = false,
+  } = props;
   const [status, setStatus] = useState(BOX_STATUS.AVAILABLE);
   const [stone, setStone] = useState<"Black" | "White" | null>(null); // Track black or white stone
 
-  const getClassNames = () => {
-    const className = style.box;
-    switch (status) {
-      case BOX_STATUS.AVAILABLE:
-        return `${className} ${style.available}`;
-      case BOX_STATUS.SELECTED:
-        return `${className} ${style.selected}`;
-      case BOX_STATUS.OCCUPIED:
-        return `${className} ${style.occupied}`;
-      default:
-        return className;
+  // Reset stone and status when the restart prop changes
+  useEffect(() => {
+    if (restart) {
+      setStatus(BOX_STATUS.AVAILABLE);
+      setStone(null);
     }
+  }, [restart]);
+
+  const getClassNames = (): string => {
+    const classNames = [style.box];
+
+    if (restart) {
+      classNames.push(style.available);
+      return classNames.join(" ");
+    } else if (disabled) {
+      // If the game is over, add the "occupied" class to all boxes
+      classNames.push(style.occupied);
+    } else {
+      switch (status) {
+        case BOX_STATUS.AVAILABLE:
+          classNames.push(style.available);
+          break;
+        case BOX_STATUS.SELECTED:
+          classNames.push(style.selected);
+          break;
+        case BOX_STATUS.OCCUPIED:
+          classNames.push(style.occupied);
+          break;
+        default:
+          break;
+      }
+    }
+
+    return classNames.join(" ");
   };
-  console.log("Stone?: ", stone);
 
   const handleClick = () => {
-    if (status === BOX_STATUS.AVAILABLE && stone === null) {
+    if (!disabled && status === BOX_STATUS.AVAILABLE && stone === null) {
       handleMove(id);
       setStatus(BOX_STATUS.OCCUPIED);
       setStone(currentPlayer === "Black" ? "Black" : "White");
+      onSelect();
     }
   };
+
   return (
     <div className={getClassNames()} onClick={handleClick}>
-      {stone === "Black" && <div className={style.blackStone} />}
-      {stone === "White" && <div className={style.whiteStone} />}
+      {stone && (
+        /*!restart && */ <div
+          className={stone === "Black" ? style.blackStone : style.whiteStone}
+        />
+      )}
     </div>
   );
 }

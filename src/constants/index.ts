@@ -3,3 +3,9 @@ export enum BOX_STATUS {
   SELECTED = "SELECTED",
   OCCUPIED = "OCCUPIED",
 }
+
+export enum BookingActionType {
+  SELECT = "SELECT",
+  BLACK = "BLACK",
+  WHITE = "WHITE",
+}

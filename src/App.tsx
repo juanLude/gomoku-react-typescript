@@ -1,10 +1,10 @@
 import "./App.css";
 import Header from "./components/Header";
-import { Login, SignUp, PreviousGames, Game } from "./pages";
+import { Login, SignUp, PreviousGames, Game, Bookings } from "./pages";
 import { Routes, Route, Navigate } from "react-router-dom";
 import UserProvider from "./components/UserProvider";
-import { useState } from "react";
 import Dropdown from "./components/Dropdown";
+import GameLog from "./components/GameLog";
 
 function App() {
   return (
@@ -18,6 +18,8 @@ function App() {
           <Route path="sign-up" element={<SignUp />} />
           <Route path="game" element={<Game />} />
           <Route path="*" element={<Navigate to="/" replace />} />
+          <Route path="bookings" element={<Bookings />} />
+          <Route path="game-log/:sessionId" element={<GameLog />} />
         </Routes>
       </main>
     </UserProvider>
