@@ -20,15 +20,15 @@ export default function Bookings() {
     if (storedGameDetails) {
       const parsedGameDetails = JSON.parse(storedGameDetails);
       // Update the gameDetails in state if needed
-      //console.log("parsedGameDetails: ", parsedGameDetails);
+      console.log("parsedGameDetails: ", parsedGameDetails);
     }
   }, [gameDetails]);
   if (!user) return <Navigate to="/login" replace />;
   return (
     <div className={style.container}>
-      <h1 className={style.header}>
+      {/* <h1 className={style.header}>
         You have {Object.keys(bookings).length} bookings
-      </h1>
+      </h1> */}
       {Object.keys(bookings).map((key) => {
         const sessionId = key.split("-")[1];
         const storedGameDetails = localStorage.getItem(
@@ -42,7 +42,8 @@ export default function Bookings() {
         return (
           <div className={style.list} key={key}>
             <p className="style.title">
-              Game #{sessionId} @{parsedGameDetails?.date}&nbsp;&nbsp;
+              Game #{sessionId} &nbsp;&nbsp;@{parsedGameDetails?.date}
+              &nbsp;&nbsp;&nbsp;
               {parsedGameDetails?.result === "Draw"
                 ? "Game is a draw"
                 : parsedGameDetails?.result}

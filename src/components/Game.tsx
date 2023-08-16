@@ -15,8 +15,8 @@ function bookingReducer(state: number[], action: BookingAction) {
   switch (type) {
     case BookingActionType.SELECT:
       return [...state, payload];
-    // case BookingActionType.WHITE:
-    //   return [...state, payload];
+    case BookingActionType.RESET:
+      return [];
     default:
       return state;
   }
@@ -119,7 +119,14 @@ export default function Game() {
     setCurrentPlayer("Black");
     setGameOver(false); // Reset game over state
     setRestart(!restart);
-    // setRestart((prevRestart) => !prevRestart);
+    dispatch({
+      type: BookingActionType.RESET,
+      payload: 0,
+    });
+    // Clear the selected stones from localStorage
+    const gameCount = parseInt(localStorage.getItem("gameCount") || "0", 10);
+    const sessionKey = `session-${gameCount + 1}`;
+    localStorage.removeItem(sessionKey);
   };
 
   // Function to leave the game (handle redirecting to another page)

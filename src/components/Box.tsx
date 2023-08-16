@@ -35,12 +35,11 @@ export default function Box(props: BoxProps) {
 
   const getClassNames = (): string => {
     const classNames = [style.box];
-
     if (restart) {
       classNames.push(style.available);
-      return classNames.join(" ");
-    } else if (disabled) {
-      // If the game is over, add the "occupied" class to all boxes
+    }
+
+    if (disabled) {
       classNames.push(style.occupied);
     } else {
       switch (status) {
@@ -57,6 +56,25 @@ export default function Box(props: BoxProps) {
           break;
       }
     }
+    // if (restart) {
+    //   classNames.push(style.available);
+    // } else if (disabled) {
+    //   classNames.push(style.occupied);
+    // } else {
+    //   switch (status) {
+    //     case BOX_STATUS.AVAILABLE:
+    //       classNames.push(style.available);
+    //       break;
+    //     case BOX_STATUS.SELECTED:
+    //       classNames.push(style.selected);
+    //       break;
+    //     case BOX_STATUS.OCCUPIED:
+    //       classNames.push(style.occupied);
+    //       break;
+    //     default:
+    //       break;
+    //   }
+    // }
 
     return classNames.join(" ");
   };

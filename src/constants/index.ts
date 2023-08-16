@@ -6,6 +6,7 @@ export enum BOX_STATUS {
 
 export enum BookingActionType {
   SELECT = "SELECT",
+  RESET = "RESET",
   BLACK = "BLACK",
   WHITE = "WHITE",
 }
