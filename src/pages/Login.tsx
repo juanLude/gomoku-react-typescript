@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useRef, useEffect } from "react";
 import Input from "../components/Input";
 import { UserContext } from "../context";
 import { useNavigate } from "react-router-dom";
@@ -9,6 +9,7 @@ import "./Login.css";
 
 export default function Login() {
   const { login } = useContext(UserContext);
+  const unsernameInput = useRef<HTMLInputElement | null>(null);
   const navigate = useNavigate();
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
@@ -28,6 +29,12 @@ export default function Login() {
       console.log("user logged in");
     }
   };
+  useEffect(() => {
+    if (unsernameInput.current) {
+      unsernameInput.current.focus();
+    }
+  }, []);
+
   return (
     <form
       className="container"
@@ -40,6 +47,7 @@ export default function Login() {
         <Message variant="error" message="Invalid username or password" />
       )}
       <Input
+        ref={unsernameInput}
         name="username"
         placeholder="Username"
         value={username}
