@@ -2,12 +2,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import "./Dropdown.css";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context";
-import Game from "./Game";
 
-interface DropdownProps {
-  selectedOption: string;
-  handleOptionSelect: (option: string) => void;
-}
 export default function Dropdown() {
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const [selectedOption, setSelectedOption] = useState<string>("");
@@ -21,24 +16,16 @@ export default function Dropdown() {
   };
 
   const handleOptionSelect = (option: string) => {
-    console.log(`Selected option: ${selectedOption}`);
-    // const selectedValue = parseInt(option, 10);
-    // onSquareChange(selectedValue);
     setSelectedOption(option);
     setIsDropdownOpen(false);
-    //onOptionSelect(option); // Call the onOptionSelect prop to pass the selected option to the parent component (App)
-    // You can perform any action when an option is selected
   };
   const handleStartClick = () => {
     console.log("Start button clicked!");
     if (user) {
-      //navigate("game");
       navigate(`game?boardSize=${selectedOption}`);
     } else {
       navigate("login");
     }
-
-    // Add any functionality for the Start button click event
   };
 
   useEffect(() => {

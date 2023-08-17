@@ -4,24 +4,15 @@ import { BOX_STATUS } from "../constants";
 
 type BoxProps = {
   id: number;
-  handleMove: (index: number) => void; // Prop to handle the move
+  handleMove: (index: number) => void;
   currentPlayer: string;
   disabled: boolean;
   restart: boolean;
   onSelect: () => void;
-  //isSelected?: boolean;
 };
 
 export default function Box(props: BoxProps) {
-  const {
-    id,
-    handleMove,
-    currentPlayer,
-    disabled,
-    restart,
-    onSelect,
-    //isSelected = false,
-  } = props;
+  const { id, handleMove, currentPlayer, disabled, restart, onSelect } = props;
   const [status, setStatus] = useState(BOX_STATUS.AVAILABLE);
   const [stone, setStone] = useState<"Black" | "White" | null>(null); // Track black or white stone
 
@@ -56,25 +47,6 @@ export default function Box(props: BoxProps) {
           break;
       }
     }
-    // if (restart) {
-    //   classNames.push(style.available);
-    // } else if (disabled) {
-    //   classNames.push(style.occupied);
-    // } else {
-    //   switch (status) {
-    //     case BOX_STATUS.AVAILABLE:
-    //       classNames.push(style.available);
-    //       break;
-    //     case BOX_STATUS.SELECTED:
-    //       classNames.push(style.selected);
-    //       break;
-    //     case BOX_STATUS.OCCUPIED:
-    //       classNames.push(style.occupied);
-    //       break;
-    //     default:
-    //       break;
-    //   }
-    // }
 
     return classNames.join(" ");
   };
@@ -91,7 +63,7 @@ export default function Box(props: BoxProps) {
   return (
     <div className={getClassNames()} onClick={handleClick}>
       {stone && (
-        /*!restart && */ <div
+        <div
           className={stone === "Black" ? style.blackStone : style.whiteStone}
         />
       )}

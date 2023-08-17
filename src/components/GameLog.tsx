@@ -1,8 +1,7 @@
 import style from "./GameLog.module.css";
 
-import { Navigate, useNavigate } from "react-router-dom";
-import { UserContext } from "../context";
-import useLocalStorage from "../hooks/useLocalStorage";
+import { useNavigate } from "react-router-dom";
+
 import { useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 

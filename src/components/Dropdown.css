@@ -1,12 +1,10 @@
-/* Basic styles for the dropdown */
 .dropdown {
   position: relative;
   display: flex;
-  flex-direction: column; /* Change to column layout */
+  flex-direction: column;
   align-items: center;
 }
 
-/* Styles for the dropdown button */
 button {
   padding: 10px 80px;
   background-color: #3498db;
@@ -17,7 +15,6 @@ button {
   border-radius: 4px;
 }
 
-/* Styles for the dropdown menu */
 .dropdown-menu {
   display: none;
   position: absolute;
@@ -31,7 +28,6 @@ button {
   box-shadow: 0 2px 5px black;
 }
 
-/* Show the dropdown menu when the button is clicked */
 .show {
   display: flex;
   flex-direction: column;
@@ -57,7 +53,6 @@ button {
   border-bottom: none;
 }
 
-/* Styles for the Start button */
 .start-button {
   margin-top: 10px;
   padding: 10px 80px;
@@ -68,8 +63,8 @@ button {
   font-size: 16px;
   border-radius: 4px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  position: absolute; /* Position the button at the bottom */
-  bottom: -270px; /* Distance from the bottom of the dropdown menu */
+  position: absolute;
+  bottom: -270px;
 }
 */ .start-button:hover {
   background-color: #45a049;

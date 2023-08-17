@@ -97,27 +97,23 @@ export default function Game() {
         }
       }
     }
-
+    // If the board is full and there's no winner, it's a draw
     if (!board.includes(null)) {
-      // If the board is full and there's no winner, it's a draw
       setWinner("Draw");
       setGameOver(true);
     }
   };
-  // Function to toggle player turn
+  // Toggle player turn
   const togglePlayerTurn = () => {
     setCurrentPlayer(currentPlayer === "Black" ? "White" : "Black");
   };
 
-  // Function to restart the game
+  // Restart the game
   const restartGame = () => {
-    console.log("Restarting the game");
-    console.log("size:", size);
-    console.log("new board:", Array(size * size).fill(null));
     setBoard(Array(size * size).fill(null));
     setWinner(null);
     setCurrentPlayer("Black");
-    setGameOver(false); // Reset game over state
+    setGameOver(false);
     setRestart(!restart);
     dispatch({
       type: BookingActionType.RESET,
@@ -129,7 +125,7 @@ export default function Game() {
     localStorage.removeItem(sessionKey);
   };
 
-  // Function to leave the game (handle redirecting to another page)
+  // Leave the game
   const leaveGame = () => {
     if (gameOver) {
       // Get the current game count from localStorage
@@ -148,25 +144,18 @@ export default function Game() {
         result: winner === "Draw" ? "Draw" : `Winner: ${winner}`,
         moves: state,
       };
-      console.log(gameDetails);
-      //const gameKey = `gameDetails-${gameCount + 1}`;
-      // Retrieve the existing selected stones or initialize an empty array
-      //const existingSelectedStones = bookings[gameKey] || [];
-      // Combine the existing and new selected stones arrays
-      //const updatedSelectedStones = [...existingSelectedStones, state];
+
       // Convert the gameDetails object to a JSON string
       const gameDetailsString = JSON.stringify(gameDetails);
       // Store the JSON string in the localStorage
       localStorage.setItem(`gameDetails-${gameCount + 1}`, gameDetailsString);
       //localStorage.setItem(gameKey, gameDetailsString);
       localStorage.setItem("gameCount", (gameCount + 1).toString());
-      //saveBookings({ ...bookings, [`session-${gameCount + 1}`]: state });
+
       saveBookings({ ...bookings, [`session-${gameCount + 1}`]: state });
 
       navigate("/bookings", { state: { ...gameDetails, gameDetails } });
-      //navigate("/bookings");
     } else navigate("/");
-    //console.log(state);
   };
   useEffect(() => {
     // Check for a winner after each move
@@ -180,16 +169,15 @@ export default function Game() {
       // If the board is full and there's no winner, it's a draw
       setWinner("Draw");
       setGameOver(true);
-
+      // Disable user interaction
       if (boardRef.current) {
-        boardRef.current.style.pointerEvents = "none"; // Disable user interaction
-        //boardRef.current.classList.add("disable-hover"); // Add hover disable
+        boardRef.current.style.pointerEvents = "none";
       }
     }
   }, [board]);
 
   if (!user) return <Navigate to="/login" replace />;
-  // use the square prop to set the number of squares
+
   return (
     <div className={style.container}>
       {winner === null ? (
@@ -216,7 +204,6 @@ export default function Game() {
             onSelect={() =>
               dispatch({ type: BookingActionType.SELECT, payload: index })
             }
-            //isSelected={selectedStones.includes(index)}
           />
         ))}
       </div>

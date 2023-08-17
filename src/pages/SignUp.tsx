@@ -5,7 +5,6 @@ import users from "../data/users.json";
 import Message from "../components/Message";
 import "./Login.css";
 
-import { error } from "console";
 export default function SignUp() {
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");

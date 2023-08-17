@@ -37,7 +37,7 @@ p {
   display: inline-flex;
 }
 .bottom {
-  padding-top: 20px; /* Add your desired padding value */
+  padding-top: 20px;
   margin-top: 20px;
 }
 .restart {

@@ -10,7 +10,7 @@ export default function UserProvider({ children }: UserProviderProps) {
 
   const login = (username: string) => setUser({ username });
   const logout = () => setUser(undefined);
-  // 16 - Context provider and useContext hook
+
   return (
     <UserContext.Provider value={{ user, login, logout }}>
       {children}
