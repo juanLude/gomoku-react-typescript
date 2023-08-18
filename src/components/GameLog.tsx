@@ -1,22 +1,15 @@
 import style from "./GameLog.module.css";
-
 import { useNavigate } from "react-router-dom";
-
 import { useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
 export default function GameLog() {
   const location = useLocation();
 
-  const { state: { parsedGameDetails, key } = {} } = location;
-  console.log("key: ", key);
+  const { state: { parsedGameDetails } = {} } = location;
 
   const { sessionId } = useParams();
   const navigate = useNavigate();
-  // Retrieve the bookings data from route state
-  const { state: { bookings } = {} } = useLocation();
-  console.log(bookings);
-  console.log("Game details from GameLog: ", parsedGameDetails);
 
   // Define the size of the board
   const boardSize = parsedGameDetails.boardSize;

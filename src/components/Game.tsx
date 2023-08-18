@@ -6,7 +6,7 @@ import style from "./Game.module.css";
 import { BookingActionType } from "../constants";
 import useLocalStorage from "../hooks/useLocalStorage";
 import clickSound from "../assets/click_sound.mp3";
-import backgroundMusic from "../assets/keithmitchell_soyousay.mp3";
+
 type BookingAction = {
   type: BookingActionType;
   payload: number;
@@ -25,7 +25,6 @@ function bookingReducer(state: number[], action: BookingAction) {
 }
 export default function Game() {
   const { user } = useContext(UserContext);
-
   const location = useLocation();
   const navigate = useNavigate();
   const searchParams = new URLSearchParams(location.search);
@@ -50,10 +49,8 @@ export default function Game() {
 
   const play = () => {
     new Audio(clickSound).play();
-    //const music = new Audio(backgroundMusic);
-    //music.loop = true; // Loop the background music
-    //music.play();
   };
+
   // Function to handle a player move
   const handleMove = (index: number) => {
     if (!gameOver && board[index] === null) {
@@ -158,7 +155,7 @@ export default function Game() {
       const gameDetailsString = JSON.stringify(gameDetails);
       // Store the JSON string in the localStorage
       localStorage.setItem(`gameDetails-${gameCount + 1}`, gameDetailsString);
-      //localStorage.setItem(gameKey, gameDetailsString);
+
       localStorage.setItem("gameCount", (gameCount + 1).toString());
 
       saveBookings({ ...bookings, [`session-${gameCount + 1}`]: state });
@@ -171,7 +168,7 @@ export default function Game() {
     if (board.includes(null)) {
       // If there are still empty squares, check for a winner
       checkForWinner(board);
-      //setGameOver(false); // Reset the gameOver state
+      // Reset the gameOver state
     } else if (!board.includes(null)) {
       checkForWinner(board);
     } else {
