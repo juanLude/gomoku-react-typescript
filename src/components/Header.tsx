@@ -39,7 +39,7 @@ export default function Header() {
             <button
               className="login-button"
               onClick={() => {
-                navigate("bookings", {
+                navigate("games", {
                   state: { parsedGameDetails },
                 });
               }}

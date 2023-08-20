@@ -68,9 +68,7 @@ export default function GameLog() {
       <div className={style.buttonContainer}>
         <button
           className={style.button}
-          onClick={() =>
-            navigate("/bookings", { state: { parsedGameDetails } })
-          }
+          onClick={() => navigate("/games", { state: { parsedGameDetails } })}
         >
           Back
         </button>

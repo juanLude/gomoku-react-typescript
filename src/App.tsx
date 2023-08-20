@@ -1,6 +1,6 @@
 import "./App.css";
 import Header from "./components/Header";
-import { Login, SignUp, PreviousGames, Game, Bookings } from "./pages";
+import { Login, SignUp, PreviousGames, Game, Games } from "./pages";
 import { Routes, Route, Navigate } from "react-router-dom";
 import UserProvider from "./components/UserProvider";
 import Dropdown from "./components/Dropdown";
@@ -18,7 +18,7 @@ function App() {
           <Route path="sign-up" element={<SignUp />} />
           <Route path="game" element={<Game />} />
           <Route path="*" element={<Navigate to="/" replace />} />
-          <Route path="bookings" element={<Bookings />} />
+          <Route path="games" element={<Games />} />
           <Route path="game-log/:sessionId" element={<GameLog />} />
         </Routes>
       </main>

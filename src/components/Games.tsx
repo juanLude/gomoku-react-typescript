@@ -2,9 +2,9 @@ import { useContext } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { UserContext } from "../context";
 import useLocalStorage from "../hooks/useLocalStorage";
-import style from "./Bookings.module.css";
+import style from "./Games.module.css";
 
-export default function Bookings() {
+export default function Games() {
   const { user } = useContext(UserContext);
   const navigate = useNavigate();
   const [bookings] = useLocalStorage<Record<string, number[]>>("bookings", {});

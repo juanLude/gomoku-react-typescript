@@ -160,7 +160,7 @@ export default function Game() {
 
       saveBookings({ ...bookings, [`session-${gameCount + 1}`]: state });
 
-      navigate("/bookings", { state: { ...gameDetails, gameDetails } });
+      navigate("/games", { state: { ...gameDetails, gameDetails } });
     } else navigate("/");
   };
   useEffect(() => {

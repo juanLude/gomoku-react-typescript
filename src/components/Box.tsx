@@ -37,9 +37,6 @@ export default function Box(props: BoxProps) {
         case BOX_STATUS.AVAILABLE:
           classNames.push(style.available);
           break;
-        // case BOX_STATUS.SELECTED:
-        //   classNames.push(style.selected);
-        //   break;
         case BOX_STATUS.OCCUPIED:
           classNames.push(style.occupied);
           break;
