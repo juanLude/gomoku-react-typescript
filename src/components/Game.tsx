@@ -163,6 +163,7 @@ export default function Game() {
       navigate("/games", { state: { ...gameDetails, gameDetails } });
     } else navigate("/");
   };
+
   useEffect(() => {
     // Check for a winner after each move
     if (board.includes(null)) {
