@@ -3,7 +3,7 @@ import Input from "../components/Input";
 import { UserContext } from "../context";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
-import users from "../data/users.json";
+
 import Message from "../components/Message";
 import "./Login.css";
 
@@ -13,20 +13,16 @@ export default function Login() {
   const navigate = useNavigate();
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  const [isCredentialInvalid, setIsCredentialInvalid] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
-  console.log(username);
-
-  const handleLogin = () => {
-    const user = users.find(
-      (u) => u.username === username && u.password === password
-    );
-    if (!user) {
-      setIsCredentialInvalid(true);
-    } else {
-      login(username);
+  const handleLogin = async () => {
+    setErrorMessage("");
+    const result = await login(username, password);
+    console.log(username, password);
+    if (result === true) {
       navigate("/");
-      console.log("user logged in");
+    } else {
+      setErrorMessage(result);
     }
   };
   useEffect(() => {
@@ -43,9 +39,7 @@ export default function Login() {
         handleLogin();
       }}
     >
-      {isCredentialInvalid && (
-        <Message variant="error" message="Invalid username or password" />
-      )}
+      {errorMessage && <Message variant="error" message={errorMessage} />}
       <Input
         ref={unsernameInput}
         name="username"
@@ -53,7 +47,7 @@ export default function Login() {
         value={username}
         onChange={(e) => {
           setUserName(e.target.value);
-          setIsCredentialInvalid(false);
+          setErrorMessage("");
         }}
       />
       <Input
@@ -63,7 +57,7 @@ export default function Login() {
         value={password}
         onChange={(e) => {
           setPassword(e.target.value);
-          setIsCredentialInvalid(false);
+          setErrorMessage("");
         }}
       />
       <Button type="submit" disabled={!username || !password}>

@@ -1,18 +1,60 @@
-import { useState } from "react";
-import { User } from "../types";
+import { User, Credential } from "../types";
 import { UserContext } from "../context";
+import { userLocalStorage } from "../hooks";
+import { post, setToken } from "../utils/http";
+// import { API_HOST } from "../constants";
+
 type UserProviderProps = {
   children: React.ReactNode;
 };
 
 export default function UserProvider({ children }: UserProviderProps) {
-  const [user, setUser] = useState<User | undefined>(undefined);
+  const [user, setUser] = userLocalStorage<User | undefined>("user", undefined);
 
-  const login = (username: string) => setUser({ username });
-  const logout = () => setUser(undefined);
+  if (user) {
+    setToken(user.token);
+  }
+  const login = async (username: string, password: string) => {
+    try {
+      const user = await post<Credential, User>("/api/auth/login", {
+        username,
+        password,
+      });
 
+      setUser(user);
+      setToken(user.token);
+      return true;
+    } catch (error) {
+      if (error instanceof Error) {
+        return error.message;
+      }
+      return "Unable to login at this moment, please try again.";
+    }
+  };
+
+  const register = async (username: string, password: string) => {
+    try {
+      const user = await post<Credential, User>("/api/auth/register", {
+        username,
+        password,
+      });
+      setUser(user);
+      setToken(user.token);
+      return true;
+    } catch (error) {
+      if (error instanceof Error) {
+        return error.message;
+      }
+      return "Unable to login at this moment, please try again.";
+    }
+  };
+
+  const logout = () => {
+    setUser(undefined);
+    setToken("");
+  };
   return (
-    <UserContext.Provider value={{ user, login, logout }}>
+    <UserContext.Provider value={{ user, login, register, logout }}>
       {children}
     </UserContext.Provider>
   );
