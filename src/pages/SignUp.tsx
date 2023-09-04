@@ -1,24 +1,30 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Input from "../components/Input";
 import Button from "../components/Button";
-import users from "../data/users.json";
 import Message from "../components/Message";
+import { UserContext } from "../context";
 import "./Login.css";
 
 export default function SignUp() {
-  const [username, setUserName] = useState("");
+  const { register } = useContext(UserContext);
+  const navigate = useNavigate();
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSignUp = () => {
-    if (users.find((u) => u.username === username)) {
-      setErrorMessage(`Username ${username} has been taken`);
-      return;
-    }
+  const handleSignUp = async () => {
+    setErrorMessage("");
     if (password !== confirmPassword) {
       setErrorMessage("Passwords do not match");
       return;
+    }
+    const result = await register(username, password);
+    if (result === true) {
+      navigate("/");
+    } else {
+      setErrorMessage(result);
     }
   };
   return (
@@ -36,7 +42,7 @@ export default function SignUp() {
         value={username}
         onChange={(e) => {
           setErrorMessage("");
-          setUserName(e.target.value);
+          setUsername(e.target.value);
         }}
       />
       <Input

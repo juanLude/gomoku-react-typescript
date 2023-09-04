@@ -6,7 +6,7 @@ import style from "./Game.module.css";
 import { BookingActionType } from "../constants";
 import useLocalStorage from "../hooks/useLocalStorage";
 import clickSound from "../assets/click_sound.mp3";
-
+// add comment to see how it gets pushed to repo
 type BookingAction = {
   type: BookingActionType;
   payload: number;
